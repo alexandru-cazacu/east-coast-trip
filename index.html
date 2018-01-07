@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>East Cost Trip</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2 class="title">Choose your itinerary</h2>
+        <form action="calculate-trip.php" method="GET">
+            <input type="submit" id="calculate-btn" value="Calcola">
+
+            <p>From: </p>
+            <select name="from" class="select">
+                <option>New York</option>
+                <option>Philadelphia</option>
+                <option>Washington</option>
+                <option>New Orleans</option>
+                <option>Los Angeles</option>
+                <option>Seattle</option>
+                <option>Chicago</option>
+            </select>
+
+            <p>Means of transportation</p>
+            <input type="checkbox" name="bus" value="bus" /> Bus
+            <br>
+            <input type="checkbox" name="train" value="train" /> Train
+            <br>
+            <input type="checkbox" name="airplane" value="airplane" /> Airplane
+            <br>
+
+            <p>To: </p>
+            <select name="to">
+                <option>New York</option>
+                <option>Philadelphia</option>
+                <option>Washington</option>
+                <option>New Orleans</option>
+                <option>Los Angeles</option>
+                <option>Seattle</option>
+                <option>Chicago</option>
+            </select>
+
+            <fieldset>
+                <input type="radio" name="mode" value="fastest" /> Fastest
+                <br>
+                <input type="radio" name="mode" value="most-scenic" /> Most scenic
+                <br>
+                <input type="radio" name="mode" value="cheapest" /> Cheapest
+                <br>
+            </fieldset>
+    </div>
+</body>
+
+</html>
