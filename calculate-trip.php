@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,20 @@
     <link rel="stylesheet" href="style.css">
     <title>East Cost Trip</title>
 </head>
+
 <body>
     <div class="wrapper">
         <h2 class="title">Your itinerary</h2>
-        <p>You chose to go from <a href="" class="city"><?php echo $_GET["from"] ?></a> to <a href="" class="city"><?php echo $_GET["to"] ?></a></p>
+        <p>You chose to go from
+            <a href="" class="city">
+                <?php echo $_GET["from"] ?>
+            </a> to
+            <a href="" class="city">
+                <?php echo $_GET["to"] ?>
+            </a>
+        </p>
 
-        
+
         <?php
             include('cities.php');
             // echo $_GET["mode"];
@@ -60,15 +69,17 @@
                         // Controllo se il mezzo scelto esiste.
                         for ($i = 0; $i < 3; $i++) {
                             for ($j = 0; $j < 3; $j++) {
-                            if (isset($_GET[$modes[$i]]) && isset($_GET[$modes[$j]])) {
+                                if (isset($_GET[$modes[$i]]) && isset($_GET[$modes[$j]])) {
 
+                                }
                             }
                         }
                     }
                 }
             }
 
-            ?>
+        ?>
     </div>
 </body>
+
 </html>
