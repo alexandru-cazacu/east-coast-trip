@@ -35,14 +35,14 @@
         $_cityNodes[5][2] = 1;
         $_cityNodes[5][4] = 1;
         $_cityNodes[5][6] = 1;
-        $_cityNodes[1][2] = 1;
-        $_cityNodes[1][5] = 1;
+        $_cityNodes[6][2] = 1;
+        $_cityNodes[6][5] = 1;
         
         // Start and end points.
         $firstNodeIndex = 0;
         $lastNodeIndex = 2;
         
-        echo '<br />From <a href="" class="city">' . $cityNames[$firstNodeIndex] . '</a> to <a href="" class="city">' . $cityNames[$lastNodeIndex] . '</a>';
+        echo '<br />From <a href="guide.php?city=' . $cityNames[$firstNodeIndex] . '" class="city">' . $cityNames[$firstNodeIndex] . '</a> to <a href="guide.php?city='. $cityNames[$lastNodeIndex] . '" class="city">' . $cityNames[$lastNodeIndex] . '</a>';
 
         for ($i = 0; $i < 3; $i++) {
             //initialize the array for storing
