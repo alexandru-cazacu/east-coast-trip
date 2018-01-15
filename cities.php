@@ -175,59 +175,69 @@
     $_cityNodes[6][2] = 1;
     $_cityNodes[6][5] = 1;
 
-    function getShortestPath() {
-        // Start and end points.
-        $firstNodeIndex = 0;
-        $lastNodeIndex = 2;
-
-        echo '<br />From <a href="guide.php?city=' . $cityNames[$firstNodeIndex] . '" class="city">' . $cityNames[$firstNodeIndex] . '</a> to <a href="guide.php?city='. $cityNames[$lastNodeIndex] . '" class="city">' . $cityNames[$lastNodeIndex] . '</a>';
-
-        for ($i = 0; $i < 20; $i++) {
-            //initialize the array for storing
-            $S = array(); //the nearest path with its parent and weight
-            $Q = array(); //the left nodes without the nearest path
-            foreach(array_keys($_cityNodes) as $val)
-                $Q[$val] = 99999;
-            $Q[$firstNodeIndex] = 0;
-
-            //start calculating
-            while(!empty($Q)) {
-                $min = array_search(min($Q), $Q);//the most min weight
-                if($min == $lastNodeIndex) break;
-                foreach($_cityNodes[$min] as $key => $val) {
-                    if(!empty($Q[$key]) && $Q[$min] + $val < $Q[$key]) {
-                        $Q[$key] = $Q[$min] + $val;
-                        $S[$key] = array($min, $Q[$key]);
-                    }
+    // Start and end points.
+    $firstNodeIndex = 0;
+    $lastNodeIndex = 3;
+    
+    // echo '<br />From <a href="guide.php?city=' . $cityNames[$firstNodeIndex] . '" class="city">' . $cityNames[$firstNodeIndex] . '</a> to <a href="guide.php?city='. $cityNames[$lastNodeIndex] . '" class="city">' . $cityNames[$lastNodeIndex] . '</a>';
+    
+    $finalPath = array();
+    for ($i = 0; $i < count($cityNames); $i++) {
+        //initialize the array for storing
+        $S = array(); //the nearest path with its parent and weight
+        $Q = array(); //the left nodes without the nearest path
+        foreach(array_keys($_cityNodes) as $val)
+        $Q[$val] = 99999;
+        $Q[$firstNodeIndex] = 0;
+        
+        //start calculating
+        while(!empty($Q)) {
+            $min = array_search(min($Q), $Q);//the most min weight
+            if($min == $lastNodeIndex) break;
+            foreach($_cityNodes[$min] as $key => $val) {
+                if(!empty($Q[$key]) && $Q[$min] + $val < $Q[$key]) {
+                    $Q[$key] = $Q[$min] + $val;
+                    $S[$key] = array($min, $Q[$key]);
                 }
-                unset($Q[$min]);
+            }
+            unset($Q[$min]);
+        }
+        
+        //list the path
+        $path = array();
+        $pos = $lastNodeIndex;
+        while($pos != $firstNodeIndex){
+            $path[] = $pos;
+            $pos = $S[$pos][0];
+        }
+        $path[] = $firstNodeIndex;
+        $path = array_reverse($path);
+
+        // Prints result.
+        // if ($S[$lastNodeIndex][1] < 10) {
+        //     echo "<br />==================================================";
+        //     echo "<br />The length is ". $S[$lastNodeIndex][1];
+        //     echo "<br />Path is ";
+            
+        //     // $routes[$_GET['from']][$_GET['to']][$modes[$i]]["costo"];
+
+        //     for ($j = 0; $j < count($path); $j++) {
+        //         echo $cityNames[$path[$j]] . " --> ";
+        //     }
+        //     echo "<br />==================================================";
+        // }
+            
+        $_cityNodes[$path[count($path) - 2]][$lastNodeIndex] = 100;
+
+        if ($S[$lastNodeIndex][1] < 10) {
+            for($j = 0; $j < count($path); $j++) {
+                $path[$j] = $cityNames[$path[$j]];
             }
 
-            //list the path
-            $path = array();
-            $pos = $lastNodeIndex;
-            while($pos != $firstNodeIndex){
-                $path[] = $pos;
-                $pos = $S[$pos][0];
-            }
-            $path[] = $firstNodeIndex;
-            $path = array_reverse($path);
-
-            // Prints result.
-            if ($S[$lastNodeIndex][1] < 10) {
-                echo "<br />==================================================";
-                echo "<br />The length is ". $S[$lastNodeIndex][1];
-                echo "<br />Path is ";
-                
-                // $routes[$_GET['from']][$_GET['to']][$modes[$i]]["costo"];
-
-                for ($j = 0; $j < count($path); $j++) {
-                    echo $cityNames[$path[$j]] . " --> ";
-                }
-                echo "<br />==================================================";
-            }
-                
-            $_cityNodes[$path[count($path) - 2]][$lastNodeIndex] = 100;
+            $finalPath[$i] = $path;
         }
     }
+
+    header('Content-type: application/json');
+    echo json_encode($finalPath);
 ?>
