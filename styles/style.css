@@ -10,10 +10,6 @@
     width: 95%;
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 50vh;
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
-    padding: 1em;
-    width: 600px;
 }
 
 .title {
@@ -50,6 +46,7 @@ select {
     color: black;
 }
 
+
 /* ==================== BUTTON ==================== */
 
 #calculate-btn {
@@ -57,29 +54,131 @@ select {
     outline: none;
     border-radius: 40px;
     background: #fff;
-    border: 2px solid #1ECD97;
-    color: #1ECD97;
+    color: white;
+    border: 0.5em solid #1ECD97;
+    background: #1ECD97;
     cursor: pointer;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
-    margin-left: 2em;
+    font-weight: bold;
+    margin: 1em;
+    min-width: 150px;
 }
 
 #calculate-btn:hover {
-    color: white;
-    background: #1ECD97;
-}
-
-#calculate-btn:active {
-    letter-spacing: 2px;
+    border: 0.5em solid #1ECD97;
+    background-color: #fff;
+    color: #1ECD97;
+    letter-spacing: 0.1em;
 }
 
 .searchField {
     border: 1px solid #888;
-    border-radius: 300px;
     padding: 0.5em 1.5em;
+    margin: 0;
+    min-width: 200px;
+    margin-left: -4.15px;
 }
 
-.transportation {
-    padding: 1em;
+.searchField.first {
+    border: 1px solid #888;
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 300px;
+}
+
+.searchField.last {
+    border: 1px solid #888;
+    border-top-right-radius: 300px;
+    border-bottom-right-radius: 300px;
+}
+
+
+/* ****************************************************************************************************
+            NAVBAR
+**************************************************************************************************** */
+
+.navbar {
+    background-color: rgb(20, 20, 20, 0);
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.logo {
+    float: left;
+    color: #fff;
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.navbar .list {
+    float: right;
+}
+
+.navbar .list .item {
+    color: #bbb;
+    padding: 1em 0 1em 0;
+    margin: 0;
+    margin-left: 3em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.navbar .list .item:link,
+.navbar .list .item:visited,
+.navbar .list .item:active {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.navbar .list .item:hover {
+    color: #fff;
+}
+
+.navbar .list .item.active {
+    color: #ff8500;
+    border-bottom: 3px solid #ff8500;
+}
+
+/* ****************************************************************************************************
+            HERO
+**************************************************************************************************** */
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: url("../images/hero3.jpg") center no-repeat;
+    background-size: cover;
+    clear: both;
+    text-align: center;
+    z-index: -10;
+}
+
+.darker {
+    width: 100%;
+    height: 100vh;
+    /* background: url("../images/black.jpg") center no-repeat; */
+    /* background-size: cover; */
+    clear: both;
+    text-align: center;
+    z-index: -9;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.hero .title {
+    font-weight: bolder;
+    font-size: 6em;
+    color: #fff;
+    padding-top: 30vh;
+    margin: 0;
+    display: block;
+    margin-bottom: 10vh;
+}
+
+.hero .subtitle {
+    font-weight: bolder;
+    font-size: 2em;
+    color: #fff;
 }
