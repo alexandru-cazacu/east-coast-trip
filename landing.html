@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <title>East Coast Trip</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="wrapper">
@@ -21,15 +23,48 @@
 
     <div class="hero">
         <div class="darker">
-            <h1 class="title">Chose your destination</h1>
-            <select class="searchField first">
-                <option value="yo">New York</option>
-            </select>
-            <input type="text" placeholder="To..." name="to" class="searchField" />
-            <input type="text" placeholder="Mode" name="to" class="searchField" />
-            <input type="text" placeholder="Another" name="to" class="searchField last" />
-            <input type="submit" id="calculate-btn" value="Calcola">
+            <form action="calculate-trip.php" method="GET" class="main-form">
+                <h3 class="form-title">Chose your trip</h3>
+                <select name="from" class="search-field">
+                        <option value="" disabled selected>From...</option>
+                    <option>New York</option>
+                    <option>Philadelphia</option>
+                    <option>Washington</option>
+                    <option>New Orleans</option>
+                    <option>Los Angeles</option>
+                    <option>Seattle</option>
+                    <option>Chicago</option>
+                </select>
+                <select name="to" class="search-field">
+                        <option value="" disabled selected>To...</option>
+                    <option>New York</option>
+                    <option>Philadelphia</option>
+                    <option>Washington</option>
+                    <option>New Orleans</option>
+                    <option>Los Angeles</option>
+                    <option>Seattle</option>
+                    <option>Chicago</option>
+                </select>
+                <select name="type" class="search-field">
+                    <option value="" disabled selected>Type...</option>
+                    <option>Fastest</option>
+                    <option>Most scenic</option>
+                    <option>Cheapest</option>
+                </select>
+
+                <div class="transportation">
+                    <p>Means of transportation</p>
+                    <input type="checkbox" name="bus" value="bus" /> Bus
+                    <br>
+                    <input type="checkbox" name="train" value="train" /> Train
+                    <br>
+                    <input type="checkbox" name="airplane" value="airplane" /> Airplane
+                </div>
+
+                <input type="submit" id="calculate-btn" value="Calcola">
+            </form>
         </div>
     </div>
 </body>
+
 </html>

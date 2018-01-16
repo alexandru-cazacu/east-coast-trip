@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 * {
     margin: 0;
     padding: 0;
     border: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .wrapper {
@@ -12,93 +12,12 @@
     margin: 0 auto;
 }
 
-.title {
-    text-align: center;
-}
-
-.section {
-    padding: 1.25%;
-    margin: 1.25%;
-    width: 45%;
-    height: 200px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    float: left;
-}
-
-
-/* ==================== SELECT ==================== */
-
-select {
-    border: 1px solid #ddd;
-    padding: 0.3em 0.6em;
-}
-
-.city {
-    background-color: #ccc;
-    padding: 0.2em 0.8em;
-    text-decoration: none;
-    color: black;
-    border-radius: 30px;
-}
-
-.city:hover {
-    background-color: #888;
-    color: black;
-}
-
-
-/* ==================== BUTTON ==================== */
-
-#calculate-btn {
-    padding: 0.5em 2em;
-    outline: none;
-    border-radius: 40px;
-    background: #fff;
-    color: white;
-    border: 0.5em solid #1ECD97;
-    background: #1ECD97;
-    cursor: pointer;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-    font-weight: bold;
-    margin: 1em;
-    min-width: 150px;
-}
-
-#calculate-btn:hover {
-    border: 0.5em solid #1ECD97;
-    background-color: #fff;
-    color: #1ECD97;
-    letter-spacing: 0.1em;
-}
-
-.searchField {
-    border: 1px solid #888;
-    padding: 0.5em 1.5em;
-    margin: 0;
-    min-width: 200px;
-    margin-left: -4.15px;
-}
-
-.searchField.first {
-    border: 1px solid #888;
-    border-top-left-radius: 300px;
-    border-bottom-left-radius: 300px;
-}
-
-.searchField.last {
-    border: 1px solid #888;
-    border-top-right-radius: 300px;
-    border-bottom-right-radius: 300px;
-}
-
-
 /* ****************************************************************************************************
             NAVBAR
 **************************************************************************************************** */
 
 .navbar {
-    background-color: rgb(20, 20, 20, 0);
+    background-color: rgb(20, 20, 20, 0.36);
     z-index: 100;
     position: absolute;
     top: 0;
@@ -118,23 +37,24 @@ select {
 }
 
 .navbar .list .item {
-    color: #bbb;
+    color: #fff;
     padding: 1em 0 1em 0;
     margin: 0;
     margin-left: 3em;
     display: inline-block;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .navbar .list .item:link,
 .navbar .list .item:visited,
 .navbar .list .item:active {
-    color: #bbb;
+    color: #fff;
     text-decoration: none;
 }
 
 .navbar .list .item:hover {
     color: #fff;
+    border-bottom: 2px solid #fff;
 }
 
 .navbar .list .item.active {
@@ -149,7 +69,7 @@ select {
 .hero {
     width: 100%;
     height: 100vh;
-    background: url("../images/hero3.jpg") center no-repeat;
+    background: url("../images/hero1.jpg") center no-repeat;
     background-size: cover;
     clear: both;
     text-align: center;
@@ -164,7 +84,7 @@ select {
     clear: both;
     text-align: center;
     z-index: -9;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .hero .title {
@@ -180,5 +100,67 @@ select {
 .hero .subtitle {
     font-weight: bolder;
     font-size: 2em;
+    color: #fff;
+}
+
+/* ****************************************************************************************************
+            FORM
+**************************************************************************************************** */
+
+.main-form {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    margin-top: 150px;
+    margin-right: 150px;
+    float: right;
+    padding: 2em;
+    border-radius: 3px;
+}
+
+.form-title {
+    display: block;
+    margin: 0 auto 1em auto;
+}
+
+.search-field {
+    border: 1px solid #888;
+    padding: 0.5em 1.5em;
+    border-radius: 300px;
+    display: block;
+    margin: 0 auto 1em auto;
+    width: 250px;
+}
+
+.transportation {
+    text-align: left;
+}
+
+select:required:invalid {
+    color: gray;
+  }
+  option[value=""][disabled] {
+    display: none;
+  }
+  option {
+    color: black;
+  }
+
+#calculate-btn {
+    padding: 0.5em 2em;
+    outline: none;
+    border-radius: 40px;
+    background: #fff;
+    color: #1ECD97;
+    background: #fff;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    font-weight: bold;
+    display: block;
+    margin: 2em auto 0 auto;
+}
+
+#calculate-btn:hover {
+    background-color: #1ECD97;
     color: #fff;
 }
