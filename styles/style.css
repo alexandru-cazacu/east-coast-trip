@@ -17,7 +17,7 @@
 **************************************************************************************************** */
 
 .navbar {
-    background-color: rgb(20, 20, 20, 0.36);
+    background-color: rgb(20, 20, 20, 0.8);
     z-index: 100;
     position: absolute;
     top: 0;
@@ -69,11 +69,12 @@
 .hero {
     width: 100%;
     height: 100vh;
-    background: url("../images/hero1.jpg") center no-repeat;
-    background-size: cover;
+    background: url("../images/hero1.jpg");
+    background-repeat: no-repeat !important;
+    background-position: center !important;
     clear: both;
     text-align: center;
-    z-index: -10;
+    position: relative;
 }
 
 .darker {
@@ -83,8 +84,7 @@
     /* background-size: cover; */
     clear: both;
     text-align: center;
-    z-index: -9;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero .title {
@@ -103,6 +103,27 @@
     color: #fff;
 }
 
+.bullets {
+    margin: 0 auto;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+}
+
+.bullet {
+    width: 0.65em;
+    height:0.65em;
+    display: inline-block;
+    border-radius: 100%;
+    border: 0.18em solid #fff;
+    margin: 0 0.2em;
+}
+
+.bullet.active {
+    background-color: #fff;
+}
+
 /* ****************************************************************************************************
             FORM
 **************************************************************************************************** */
@@ -110,11 +131,12 @@
 .main-form {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     background-color: #fff;
-    margin-top: 150px;
+    margin-top: 200px;
     margin-right: 150px;
     float: right;
     padding: 2em;
-    border-radius: 3px;
+    border-radius: 5px;
+    z-index: 100;
 }
 
 .form-title {
@@ -125,7 +147,7 @@
 .search-field {
     border: 1px solid #888;
     padding: 0.5em 1.5em;
-    border-radius: 300px;
+    border-radius: 5px;
     display: block;
     margin: 0 auto 1em auto;
     width: 250px;
