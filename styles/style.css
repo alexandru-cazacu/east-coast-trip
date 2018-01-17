@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700'); */
 * {
     margin: 0;
     padding: 0;
@@ -38,11 +38,13 @@
 
 .navbar .list .item {
     color: #fff;
-    padding: 1em 0 1em 0;
+    /* padding: 1em 0 1em 0; */
+    padding: 1em;
     margin: 0;
-    margin-left: 3em;
+    /* margin-left: 3em; */
     display: inline-block;
-    font-weight: 500;
+    font-weight: bold;
+    letter-spacing: 0.08em;
 }
 
 .navbar .list .item:link,
@@ -53,13 +55,13 @@
 }
 
 .navbar .list .item:hover {
-    color: #fff;
-    border-bottom: 2px solid #fff;
+    color: #ff8500;
+    background-color: #fff;
+    color: #000;
 }
 
 .navbar .list .item.active {
     color: #ff8500;
-    border-bottom: 3px solid #ff8500;
 }
 
 /* ****************************************************************************************************
@@ -106,14 +108,14 @@
 .bullets {
     margin: 0 auto;
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 0;
     right: 0;
 }
 
 .bullet {
-    width: 0.65em;
-    height:0.65em;
+    width: 0.5em;
+    height:0.5em;
     display: inline-block;
     border-radius: 100%;
     border: 0.18em solid #fff;
@@ -131,8 +133,8 @@
 .main-form {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     background-color: #fff;
-    margin-top: 200px;
-    margin-right: 150px;
+    margin-top: 150px;
+    margin-right: 100px;
     float: right;
     padding: 2em;
     border-radius: 5px;
@@ -147,7 +149,7 @@
 .search-field {
     border: 1px solid #888;
     padding: 0.5em 1.5em;
-    border-radius: 5px;
+    border-radius: 500px;
     display: block;
     margin: 0 auto 1em auto;
     width: 250px;
@@ -172,17 +174,102 @@ select:required:invalid {
     outline: none;
     border-radius: 40px;
     background: #fff;
+    border: 2px solid #1ECD97;
     color: #1ECD97;
-    background: #fff;
     cursor: pointer;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
     font-weight: bold;
     display: block;
     margin: 2em auto 0 auto;
+    font-weight: bold;
+    width: 250px;
 }
 
 #calculate-btn:hover {
     background-color: #1ECD97;
     color: #fff;
+    letter-spacing: 0.1em;
+}
+
+/* ****************************************************************************************************
+            TIMELINE
+**************************************************************************************************** */
+
+.timeline {
+
+}
+
+.event {
+    display: inline-block;
+    margin-left: -4.45px;
+}
+
+.timeline .line {
+    height: 0.5em;
+    width: 10em;
+    background-color: #444;
+    /* margin: 0 auto; */
+    display: inline-block;
+    margin-bottom: 0.75em;
+}
+
+.timeline .line.first {
+    height: 0.5em;
+    width: 3em;
+    background-image: linear-gradient(right, from(rgba(255, 255, 255, 1)), to(rgba(0, 0, 0, 1)));
+}
+
+.timeline .line.last {
+    height: 0.5em;
+    width: 3em;
+    background-image: linear-gradient(to left, from(rgba(0, 0, 0, 0)), to(rgba(255, 255, 255, 1)));
+}
+
+.timeline .point {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: #fff;
+    border: 0.4em solid red;
+    border-radius: 100%;
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    margin-left: -4.5px;
+}
+
+.timeline .event:nth-child(odd) .info {
+    position: absolute;
+    bottom: 2em;
+    width: 15em;
+}
+
+.timeline .event:nth-child(odd) .info * {
+    
+}
+
+.timeline .event:nth-child(even) .info {
+    position: absolute;
+    bottom: 2em;
+    width: 15em;
+}
+
+.timeline .event:nth-child(even) .info * {
+    
+}
+
+.timeline .title {
+    margin: 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    padding: 0.5em;
+    background-color: #eee;
+}
+
+.timeline .date {
+    margin: 0;
+    color: red;
+    display: inline;
+    font-size: 0.8em;
 }

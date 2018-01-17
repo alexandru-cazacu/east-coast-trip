@@ -13,7 +13,7 @@ function doStuff() {
 
     }
     $('.bullets .bullet:nth-child(' + num + ')').toggleClass("active");
-    if (number >= 7) {
+    if (number >= 1) {
         number = 1;
     }
 }
