@@ -1,0 +1,77 @@
+/* ****************************************************************************************************
+            FORM
+**************************************************************************************************** */
+
+.main-form {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: #fff;
+    float: right;
+    padding: 2em;
+    border-radius: 5px;
+    z-index: 100;
+    position: absolute;
+    top: 150px;
+    right: 100px;
+}
+
+.form-title {
+    display: block;
+    margin: 0 auto 1em auto;
+}
+
+.search-field {
+    border: 2px solid #888;
+    padding: 0.5em 1.5em;
+    border-radius: 500px;
+    display: block;
+    margin: 0 auto 1em auto;
+    width: 250px;
+}
+
+.search-field.error {
+    border: 2px solid red;
+}
+
+
+.transportation {
+    text-align: left;
+}
+
+select:required:invalid {
+    color: gray;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
+}
+
+#calculate-btn {
+    padding: 0.5em 2em;
+    outline: none;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #1ECD97;
+    color: #1ECD97;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    font-weight: bold;
+    display: block;
+    margin: 2em auto 0 auto;
+    font-weight: bold;
+    width: 250px;
+}
+
+#calculate-btn:hover {
+    background-color: #1ECD97;
+    color: #fff;
+    letter-spacing: 0.1em;
+}
+
+.fa {
+    padding-left: 8px;
+}

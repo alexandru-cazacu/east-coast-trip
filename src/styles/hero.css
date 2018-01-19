@@ -1,0 +1,40 @@
+.hero {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.darker {
+    width: 100%;
+    height: 100vh;
+    /* background: url("../images/black.jpg") center no-repeat; */
+    /* background-size: cover; */
+    clear: both;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero img {
+    width: 100%;
+}
+
+.bullets {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+}
+
+.bullet {
+    width: 0.5em;
+    height:0.5em;
+    display: inline-block;
+    border-radius: 100%;
+    border: 0.18em solid #fff;
+    margin: 0 0.3em;
+    cursor: pointer;
+}
+
+.bullet.active {
+    background-color: #fff;
+}

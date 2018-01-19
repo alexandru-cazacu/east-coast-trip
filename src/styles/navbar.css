@@ -1,0 +1,51 @@
+/* ****************************************************************************************************
+            NAVBAR
+**************************************************************************************************** */
+
+.navbar {
+    background-color: rgb(20, 20, 20, 1);
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.logo {
+    float: left;
+    color: #fff;
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.navbar .list {
+    float: right;
+}
+
+.navbar .list .item {
+    color: #fff;
+    /* padding: 1em 0 1em 0; */
+    padding: 1em;
+    margin: 0;
+    /* margin-left: 3em; */
+    display: inline-block;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+}
+
+.navbar .list .item:link,
+.navbar .list .item:visited,
+.navbar .list .item:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .list .item:hover {
+    color: #ff8500;
+    background-color: #fff;
+    color: #000;
+}
+
+.navbar .list .item.active {
+    color: #ff8500;
+}
