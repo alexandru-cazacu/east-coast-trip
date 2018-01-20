@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./views/home.view";
+import Trip from "./views/trip.view";
 import Destinations from "./views/destinations.view";
 import About from "./views/about.view";
 import PageNotFound from"./views/pageNotFound.view";
@@ -21,6 +22,7 @@ function App() {
                         <h2 className="logo">East Coast Trip</h2>
                         <div className="list">
                             <Link to="/" className="item">Home</Link>
+                            <Link to="/trip" className="item">Trip</Link>
                             <Link to="/destinations" className="item">Destinations</Link>
                             <Link to="/about" className="item">About</Link>
                         </div>
@@ -28,6 +30,7 @@ function App() {
                 </nav>
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/trip" component={Trip} />
                     <Route exact path="/destinations" component={Destinations} />
                     <Route exact path="/about" component={About} />
                     <Route component={PageNotFound} />

@@ -47,9 +47,9 @@ class Form extends React.Component {
                 </select>
                 <select name="type" className="search-field">
                     <option value="" disabled selected>Type...</option>
-                    <option>Fastest</option>
-                    <option>Most scenic</option>
-                    <option>Cheapest</option>
+                    <option value="fastest">Fastest</option>
+                    <option value="most_scenic">Most scenic</option>
+                    <option value="cheapest">Cheapest</option>
                 </select>
 
                 <div className="transportation">
