@@ -10,8 +10,8 @@
     border-radius: 5px;
     z-index: 100;
     position: absolute;
-    top: 150px;
-    right: 100px;
+    top: 20vh; /* 200px */
+    right: 16vh; /*150px*/
 }
 
 .form-title {
@@ -74,4 +74,8 @@ option {
 
 .fa {
     padding-left: 8px;
+}
+
+.error-msg {
+    color: red;
 }

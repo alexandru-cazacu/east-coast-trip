@@ -1,0 +1,79 @@
+.about .bg {
+    width: 100%;
+    height: 50vh;
+    background: url("../images/abstract-bg1.png");
+    background-size: cover;
+}
+
+.about .half {
+    width: 100%;
+    height: 50vh;
+}
+
+.about .title {
+    color: white;
+    text-align: center;
+}
+
+.about .content {
+    color: white;
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.profile {
+    width: 31.3%;
+    display: inline-block;
+    padding: 1% 1% 2% 1%;
+}
+
+.profile img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 100%;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.profile .name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.profile .role {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    ;
+}
+
+.half {
+    text-align: center;
+    width: 200px;
+}
+
+.half .fa {
+    font-size: 4em;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0.5em;
+}
+
+.half .second-half-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.half .second-half-content {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 1.4em;
+}

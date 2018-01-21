@@ -1,0 +1,42 @@
+.destinations .card {
+    display: inline-block;
+    height: 250px;
+    margin: 1%;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.destinations .large {
+    width: 64.5%;
+}
+
+.destinations .small {
+    width: 31.3%;
+}
+
+.destinations .card img {
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+
+.destinations .card .desc {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s ease;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    color: white;
+    font-size: 2em;
+    line-height: 250px;
+    text-align: center;
+}
+
+.destinations .card .desc:hover {
+    opacity: 1;
+}

@@ -1,0 +1,31 @@
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vertical-space {
+    height: 4.5em;
+}
+
+.space.bottom {
+    margin-bottom: 20px;
+}
+
+.space.top {
+    margin-top: 20px;
+}

@@ -3,7 +3,7 @@ import Hero from "../components/hero.component";
 import Form from "../components/form.component";
 import "../styles/home.css";
 
-function Home() {
+function Home(props) {
     return (
         <div>
             <Hero />

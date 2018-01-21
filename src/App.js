@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./views/home.view";
 import Trip from "./views/trip.view";
+import Destination from "./views/destination.view";
 import Destinations from "./views/destinations.view";
 import About from "./views/about.view";
 import PageNotFound from"./views/pageNotFound.view";
@@ -14,6 +15,7 @@ import {
 } from "react-router-dom";
 
 function App() {
+
     return (
         <Router>
             <div>
@@ -31,7 +33,8 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/trip" component={Trip} />
-                    <Route exact path="/destinations" component={Destinations} />
+                    <Route exact path="/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />
+                    <Route exact path="/destinations/:id(\d+)" component={Destination} />
                     <Route exact path="/about" component={About} />
                     <Route component={PageNotFound} />
                 </Switch>
