@@ -10,16 +10,16 @@
     border-radius: 5px;
     z-index: 100;
     position: absolute;
-    top: 20vh; /* 200px */
-    right: 16vh; /*150px*/
+    top: 20vh;
+    right: 16vh;
 }
 
-.form-title {
+.main-form .form-title {
     display: block;
     margin: 0 auto 1em auto;
 }
 
-.search-field {
+.main-form .search-field {
     border: 2px solid #888;
     padding: 0.5em 1.5em;
     border-radius: 500px;
@@ -28,28 +28,28 @@
     width: 250px;
 }
 
-.search-field.error {
+.main-form .search-field.error {
     border: 2px solid red;
 }
 
 
-.transportation {
+.main-form .transportation {
     text-align: left;
 }
 
-select:required:invalid {
+.main-form select:required:invalid {
     color: gray;
 }
 
-option[value=""][disabled] {
+.main-form option[value=""][disabled] {
     display: none;
 }
 
-option {
+.main-form option {
     color: black;
 }
 
-#calculate-btn {
+.main-form #calculate-btn {
     padding: 0.5em 2em;
     outline: none;
     border-radius: 40px;
@@ -66,16 +66,16 @@ option {
     width: 250px;
 }
 
-#calculate-btn:hover {
+.main-form #calculate-btn:hover {
     background-color: #1ECD97;
     color: #fff;
     letter-spacing: 0.1em;
 }
 
-.fa {
+.main-form .fa {
     padding-left: 8px;
 }
 
-.error-msg {
+.main-form .error-msg {
     color: red;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/about.css";
 import abstract0 from "../images/abstract-bg1.png";
+import "./about.style.css";
 
 function About() {
     return (
@@ -9,7 +9,7 @@ function About() {
                 <div className="vertical-space"></div>
                 <h1 className="title space bottom"><center>About Us</center></h1>
                 <div className="vertical-space"></div>
-                <p className="content"><center>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit consequatur debitis, dolor, dolorum provident nemo tenetur voluptatum magni pariatur placeat, aliquam perferendis! Aliquam a, commodi voluptate impedit quod reprehenderit provident.</center></p>
+                <center><p className="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit consequatur debitis, dolor, dolorum provident nemo tenetur voluptatum magni pariatur placeat, aliquam perferendis! Aliquam a, commodi voluptate impedit quod reprehenderit provident</p></center>
             </div>
             <div className="wrapper">
                 <div className="half">

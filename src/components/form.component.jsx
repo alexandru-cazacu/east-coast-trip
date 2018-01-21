@@ -1,7 +1,5 @@
 import React from "react";
-import "../styles/form.css";
-import { Route } from "react-router-dom";
-import Trip from "../views/trip.view";
+import "./form.style.css";
 
 class Form extends React.Component {
     constructor(props) {
@@ -21,7 +19,11 @@ class Form extends React.Component {
     // ----------------------------------------------------------------------------------------------------
     validateInput() {
         // eslint-disable-next-line
-        if (!this.state.bus && !this.state.train && !this.state.airplane || this.state.from === "" || this.state.to === "" || this.state.type === "") {
+        if (!this.state.bus && !this.state.train && !this.state.airplane ||
+            this.state.from === "" ||
+            this.state.to === "" ||
+            this.state.type === "" ||
+            this.state.from === this.state.to) {
             console.log("User input is invalid!");
             return false;
         }
@@ -135,6 +137,7 @@ class Form extends React.Component {
 
                 {/* <input type="submit" id="calculate-btn" value="Calculate" onClick={(e) => this.handleSend} /> */}
                 {!this.state.airplane && !this.state.bus && !this.state.train && this.state.userHasClicked ? <p className="error-msg">Select at least 1 type of vehicle.</p> : ""}
+                {this.state.from !== "" && this.state.to !== "" && this.state.from === this.state.to && this.state.userHasClicked ? <p className="error-msg">Select 2 different cities.</p> : ""}
                 <button id="calculate-btn" onClick={(e) => this.handleSubmit(e)}>Calculate</button>
             </div>
         );
