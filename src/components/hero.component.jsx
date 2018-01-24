@@ -29,7 +29,7 @@ class Hero extends React.Component {
                 cities = response.data.map((value) => {
                     return (
                         <div className="slide-container" key={value.id}>
-                            <img src={"http://localhost:8080/east-coast-trip/images/" + value.url} alt="" />
+                            <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlBig} alt="" />
                             <h1 className="desc">
                                 {value.name}
                             </h1>

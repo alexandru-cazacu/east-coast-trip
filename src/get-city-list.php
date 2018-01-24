@@ -7,12 +7,13 @@ $table = "places";
 
 // Create connection
 $conn = mysqli_connect($host, $user, $pass, $db);
+
 // Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT ID, city_name, city_img_url FROM places";
+$sql = "SELECT ID, city_name, city_bg_url, city_thumb_url FROM places";
 $result = mysqli_query($conn, $sql);
 
 $resultJson = array();
@@ -26,7 +27,8 @@ if (mysqli_num_rows($result) > 0) {
         $resultJson[$i] = array(
             "id" => $row["ID"],
             "name" => $row["city_name"],
-            "url" => $row["city_img_url"]
+            "urlSmall" => $row["city_thumb_url"],
+            "urlBig" => $row["city_bg_url"]
         );
         $i++;
     }

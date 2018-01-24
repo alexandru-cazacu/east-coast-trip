@@ -14,7 +14,7 @@ class Destinations extends React.Component {
                 cities = response.data.map((value) => {
                     return (
                         <div className={value.id === "1" || value.id === "10" ? "card large" : "card small"} key={value.id}>
-                            <img src={"http://localhost:8080/east-coast-trip/images/" + value.url} alt="" />
+                            <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlSmall} alt="" />
                             <Link to={"destinations/" + value.id} className="desc">{value.name}</Link>
                         </div>
                     );
