@@ -1,5 +1,4 @@
 <?php
-
     $routes = [
         "New York" =>
             [ 
@@ -141,80 +140,110 @@
     ];
 
     $cityNames = [
-        "New York",
-        "Philadelphia",
-        "Chicago",
-        "Washington",
-        "New Orleans",
-        "Los Angeles",
-        "Seattle"
+        0 => "New York",
+        1 => "Philadelphia",
+        2 => "Chicago",
+        3 => "Washington",
+        4 => "New Orleans",
+        5 => "Los Angeles",
+        6 => "Seattle"
     ];
 
-    $nodesNumber = 7;
-
-    for ($x = 0; $x < $nodesNumber; $x++) {
-        for ($y = 0; $y < $nodesNumber; $y++) {
-            if (isset($routes[$cityNames[$x]][$cityNames[$y]])) {                
-                var_dump($routes[$cityNames[$x]][$cityNames[$y]]);
-                echo "<br />";
+    /**
+     * 
+     */
+    function getShortestPath ($startNode, $endNode, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast) {
+       
+        $NEAREST_PATH = array();
+        $LEFT_NODES = array();
+        
+        foreach (array_keys($routes) as $val)
+        $LEFT_NODES[array_search($val, $cityNames)] = 99999;
+        $LEFT_NODES[$startNode] = 0;
+        
+        // Starts calculating.
+        while (!empty($LEFT_NODES)) {
+            $lowestWeightIndex = array_search(min($LEFT_NODES), $LEFT_NODES);
+            
+            if ($lowestWeightIndex == $endNode)
+            break;
+            
+            // key = nome città destinazione
+            // val = array contenente i veicoli
+            foreach ($routes[$cityNames[$lowestWeightIndex]] as $key => $val)
+            
+            $vehicle = "";
+            
+            if ($isPlane && isset($val["airplane"]))
+                $vehicle = "airplane";
+            else if ($isTrain && isset($val["train"]))
+                $vehicle = "train";
+            else if ($isBus && isset($val["bus"]))
+                $vehicle = "bus";
+            
+            if ($isCheap) {
+                $finalVal = $val[$vehicle]["costo"];
             }
+            else if ($isFast) {
+                $finalVal = $val[$vehicle]["durata"];
+            }
+            
+            $finalKey = array_search($key, $cityNames);
+            
+            if (!empty($LEFT_NODES[$finalKey]) && $LEFT_NODES[$lowestWeightIndex] + $finalVal < $LEFT_NODES[$finalKey]) {
+                $LEFT_NODES[$finalKey] = $LEFT_NODES[$lowestWeightIndex] + $finalVal;
+                $NEAREST_PATH[$finalKey] = array($lowestWeightIndex, $LEFT_NODES[$finalKey]);
+            }
+            unset($LEFT_NODES[$lowestWeightIndex]);
         }
-    }
-
-    //set the distance array
-    $_distArr = array();
-    $_distArr[1][2] = 7;
-    $_distArr[1][3] = 9;
-    $_distArr[1][6] = 14;
-    $_distArr[2][1] = 7;
-    $_distArr[2][3] = 10;
-    $_distArr[2][4] = 15;
-    $_distArr[3][1] = 9;
-    $_distArr[3][2] = 10;
-    $_distArr[3][4] = 11;
-    $_distArr[3][6] = 2;
-    $_distArr[4][2] = 15;
-    $_distArr[4][3] = 11;
-    $_distArr[4][5] = 6;
-    $_distArr[5][4] = 6;
-    $_distArr[5][6] = 9;
-    $_distArr[6][1] = 14;
-    $_distArr[6][3] = 2;
-    $_distArr[6][5] = 9;
-
-    $a = 1;
-    $b = 5;
-
-    //initialize the array for storing
-    $S = array();//the nearest path with its parent and weight
-    $Q = array();//the left nodes without the nearest path
-    foreach(array_keys($_distArr) as $val) $Q[$val] = 99999;
-    $Q[$a] = 0;
-
-    //start calculating
-    while(!empty($Q)){
-        $min = array_search(min($Q), $Q);//the most min weight
-        if($min == $b) break;
-        foreach($_distArr[$min] as $key=>$val) if(!empty($Q[$key]) && $Q[$min] + $val < $Q[$key]) {
-            $Q[$key] = $Q[$min] + $val;
-            $S[$key] = array($min, $Q[$key]);
+        
+        // Builds result path.
+        $path = array();
+        $pos = $endNode;
+        while ($pos != $startNode) {
+            $path[] = $pos;
+            $pos = $NEAREST_PATH[$pos][0];
         }
-        unset($Q[$min]);
+        $path[] = $startNode;
+        $path = array_reverse($path);
+        return $path;   
     }
 
-    //list the path
-    $path = array();
-    $pos = $b;
-    while($pos != $a){
-        $path[] = $pos;
-        $pos = $S[$pos][0];
-    }
-    $path[] = $a;
-    $path = array_reverse($path);
+    // Prints result.
+    // echo "<br />From $startNode to $endNode";
+    // echo "<br />The length is ".$NEAREST_PATH[$endNode][1];
+    // echo "<br />Path is ".implode('->', $path);
+    
+    $jsonResult = array();    
+    $vehicle = "";
+    
+    $isBus = true;
+    $isPlane = true;
+    $isTrain = true;
+    
+    $isCheap = true;
+    $isFast = false;
 
-    //print result
-    echo "<img src='http://www.you4be.com/dijkstra_algorithm.png'>";
-    echo "<br />From $a to $b";
-    echo "<br />The length is ".$S[$b][1];
-    echo "<br />Path is ".implode('->', $path);
+    $result = getShortestPath(1, 5, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
+
+
+    // TODO Fix this part as it now gives the wrong vehicle/time/price.
+    for ($i = 0; $i < count($result) - 1; $i++) {
+        if ($isPlane && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["airplane"]))
+            $vehicle = "airplane";
+        else if ($isTrain && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["train"]))
+            $vehicle = "train";
+        else if ($isBus && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["bus"]))
+            $vehicle = "bus";
+
+        $jsonResult[$i]["from"] = $cityNames[$result[$i]];
+        $jsonResult[$i]["to"] = $cityNames[$result[$i+1]];
+        $jsonResult[$i]["vehicle"] = $vehicle;
+        $jsonResult[$i]["price"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["costo"];
+        $jsonResult[$i]["time"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["durata"];
+    }
+
+    header("Access-Control-Allow-Origin: *");
+    header('Content-type: application/json');
+    echo json_encode($jsonResult);
 ?>
