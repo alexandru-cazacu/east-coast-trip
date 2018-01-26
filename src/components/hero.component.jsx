@@ -18,26 +18,33 @@ const settings = {
     appendDots: "darker"
 };
 
-let cities;
-
 class Hero extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            cities: []
+        };
+    }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/east-coast-trip/get-city-list.php")
-            .then(function (response) {
+        axios.get("http://localhost:8080/east-coast-trip/get-destinations.php")
+            .then((response) => {
                 console.log(response);
-                cities = response.data.map((value) => {
-                    return (
-                        <div className="slide-container" key={value.id}>
-                            <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlBig} alt="" />
-                            <h1 className="desc">
-                                {value.name}
-                            </h1>
-                        </div>
-                    );
+                this.setState({
+                    cities: response.data.map((value) => {
+                        return (
+                            <div className="slide-container" key={value.id}>
+                                <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlBig} alt="" />
+                                <h1 className="desc">
+                                    {value.name}
+                                </h1>
+                            </div>
+                        );
+                    })
                 });
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
     }
@@ -47,12 +54,7 @@ class Hero extends React.Component {
             <div className="hero" >
                 <div className="darker">
                     <Slider {...settings}>
-                        {/* <div className="slide-container"><img src={hero0} alt="" /><h1 className="desc">Location: place name</h1></div>
-                        <div className="slide-container"><img src={hero1} alt="" /><h1 className="desc">Location: place name</h1></div>
-                        <div className="slide-container"><img src={hero2} alt="" /><h1 className="desc">Location: place name</h1></div>
-                        <div className="slide-container"><img src={hero3} alt="" /><h1 className="desc">Location: place name</h1></div>
-                        <div className="slide-container"><img src={hero4} alt="" /><h1 className="desc">Location: place name</h1></div> */}
-                        {cities}
+                        {this.state.cities}
                     </Slider>
                 </div>
             </div>

@@ -43,12 +43,17 @@ class Form extends React.Component {
             let train = this.state.train ? "&train=train" : "";
             let airplane = this.state.airplane ? "&airplane=airplane" : "";
 
-            console.log("link.com?" +
+            const uri = "link.com?" +
                 "from=" + this.state.from.split(" ").join("+") + "&" +
                 "to=" + this.state.to.split(" ").join("+") + "&" +
                 "type=" + this.state.type +
-                bus + train + airplane);
+                bus + train + airplane;
+
+            console.log(uri);
+
+            this.props.onUserClick(uri);
         }
+
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -75,7 +80,6 @@ class Form extends React.Component {
         else {
             this.refs.airplaneBox.disabled = false;
         }
-
     }
 
     // ----------------------------------------------------------------------------------------------------

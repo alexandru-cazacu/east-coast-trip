@@ -13,22 +13,38 @@ import {
     Switch
 } from "react-router-dom";
 
-function App() {
-    return (
-        <Router>
-            <div>
-                <Navbar />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/trip" component={Trip} />
-                    <Route exact path="/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />
-                    <Route exact path="/destinations/:id(\d+)" component={Destination} />
-                    <Route exact path="/about" component={About} />
-                    <Route component={PageNotFound} />
-                </Switch>
-            </div>
-        </Router>
-    );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            link: ""
+        };
+    }
+
+    onUserClick(str) {
+        this.setState({ link: str });
+        console.log(str);
+    }
+
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Navbar />
+                    <Switch>
+                        {/* <Route exact path="/" component={<Home onUserClick={this.onUserClick} />} /> */}
+                        <Route exact path="/" render={() => <Home onUserClick={this.onUserClick.bind(this)} />} />
+                        <Route exact path="/trip" render={() => <Trip link={this.state.link} />} />
+                        <Route exact path="/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />
+                        <Route exact path="/destinations/:id(\d+)" component={Destination} />
+                        <Route exact path="/about" component={About} />
+                        <Route component={PageNotFound} />
+                    </Switch>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;

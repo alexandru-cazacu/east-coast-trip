@@ -3,13 +3,19 @@ import Hero from "../components/hero.component";
 import Form from "../components/form.component";
 import "./home.style.css";
 
-function Home(props) {
-    return (
-        <div>
-            <Hero />
-            <Form />
-        </div>
-    );
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <Hero />
+                <Form onUserClick={this.props.onUserClick} />
+            </div>
+        );
+    }
 }
 
 export default Home;
