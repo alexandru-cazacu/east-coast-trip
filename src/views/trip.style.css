@@ -11,6 +11,10 @@
     border-radius: 3px;
 }
 
+.timeline div {
+    display: inline-block;
+}
+
 .timeline .line {
     width: 10em;
     height: 0.5em;
@@ -22,7 +26,7 @@
 
 .timeline .line.first {
     /* background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 1)), to(rgba(0, 0, 0, 1))); */
-    background-image: -webkit-gradient(linear, left bottom, right bottom, from(rgba(255, 255, 255, 1)), to(rgba(0, 0, 0, 1)));
+    background-image: -webkit-gradient(linear, left bottom, right bottom, from(rgba(255, 255, 255, 1)), to(rgba(0, 0, 0, 0)));
 }
 
 .timeline .line.last {

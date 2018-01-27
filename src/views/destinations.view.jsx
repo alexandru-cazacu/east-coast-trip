@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {imgPath, serverPath} from "../paths";
 
 import "./destinations.style.css";
 
@@ -14,14 +15,14 @@ class Destinations extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/east-coast-trip/get-destinations.php")
+        axios.get(serverPath + "get-destinations.php")
             .then((response) => {
                 console.log(response);
                 this.setState({
                     cities: response.data.map((value) => {
                         return (
                             <div className={value.id === "1" || value.id === "10" ? "card large" : "card small"} key={value.id}>
-                                <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlSmall} alt="" />
+                                <img src={imgPath + value.urlSmall} alt="" />
                                 <Link to={"destinations/" + value.id} className="desc">{value.name}</Link>
                             </div>
                         );

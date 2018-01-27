@@ -1,17 +1,20 @@
 import React from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from "react-router-dom";
+
 import Navbar from "./components/navbar.component";
 import Home from "./views/home.view";
 import Trip from "./views/trip.view";
 import Destinations from "./views/destinations.view";
 import Destination from "./views/destination.view";
 import About from "./views/about.view";
-import PageNotFound from"./views/pageNotFound.view";
+import PageNotFound from "./views/pageNotFound.view";
+
 import "./app.style.css";
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from "react-router-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -24,16 +27,16 @@ class App extends React.Component {
 
     onUserClick(str) {
         this.setState({ link: str });
-        console.log(str);
+        console.log("Log from App.js: " + str);
     }
 
     render() {
         return (
             <Router>
                 <div>
+                    {this.state.link !== "" && <Redirect to="/trip" />}
                     <Navbar />
                     <Switch>
-                        {/* <Route exact path="/" component={<Home onUserClick={this.onUserClick} />} /> */}
                         <Route exact path="/" render={() => <Home onUserClick={this.onUserClick.bind(this)} />} />
                         <Route exact path="/trip" render={() => <Trip link={this.state.link} />} />
                         <Route exact path="/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />

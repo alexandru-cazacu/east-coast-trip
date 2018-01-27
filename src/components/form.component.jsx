@@ -43,13 +43,13 @@ class Form extends React.Component {
             let train = this.state.train ? "&train=train" : "";
             let airplane = this.state.airplane ? "&airplane=airplane" : "";
 
-            const uri = "link.com?" +
+            const uri = "?" +
                 "from=" + this.state.from.split(" ").join("+") + "&" +
                 "to=" + this.state.to.split(" ").join("+") + "&" +
                 "type=" + this.state.type +
                 bus + train + airplane;
 
-            console.log(uri);
+            console.log("Log from form.jsx: " + uri);
 
             this.props.onUserClick(uri);
         }

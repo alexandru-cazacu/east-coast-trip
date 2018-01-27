@@ -1,11 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { imgPath, serverPath } from "../paths";
 
 import PageNotFound from "./pageNotFound.view";
 
 import "./destination.style.css";
-
-const imgUrl = "http://localhost:8080/east-coast-trip/images/";
 
 class Destination extends React.Component {
     constructor(props) {
@@ -19,7 +18,7 @@ class Destination extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/east-coast-trip/get-destination.php?id=" + this.props.match.params.id)
+        axios.get(serverPath + "get-destination.php?id=" + this.props.match.params.id)
             .then((response) => {
                 console.log(response);
 
@@ -29,7 +28,7 @@ class Destination extends React.Component {
                         return (
                             <div className="section" key={value.name}>
                                 <div className="card right">
-                                    <img src={imgUrl + value.url} alt={value.name} />
+                                    <img src={imgPath + value.url} alt={value.name} />
                                     <div className="desc">
                                         <p>{value.name}</p>
                                     </div>
@@ -59,7 +58,7 @@ class Destination extends React.Component {
             return (
                 <div className="destination">
                     <div className="small-hero">
-                        <img className="bg" src={imgUrl + this.state.city.urlBig} alt="" />
+                        <img className="bg" src={imgPath + this.state.city.urlBig} alt="" />
                         <h1 className="title">{this.state.city.name}</h1>
                         <h1 className="subtitle">{this.state.city.nick}</h1>
                     </div>
@@ -69,7 +68,7 @@ class Destination extends React.Component {
                         <h1><center className="space bottom">Welcome to {this.state.city.name}</center></h1>
                         <div className="left section">
                             <div className="card">
-                                <img src={imgUrl + this.state.city.urlSmall} alt="" />
+                                <img src={imgPath + this.state.city.urlSmall} alt="" />
                                 <div className="desc">
                                     <p>{this.state.city.name}</p>
                                 </div>

@@ -4,10 +4,6 @@ import Form from "../components/form.component";
 import "./home.style.css";
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>

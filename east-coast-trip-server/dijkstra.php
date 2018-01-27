@@ -149,16 +149,13 @@
         6 => "Seattle"
     ];
 
-    /**
-     * 
-     */
     function getShortestPath ($startNode, $endNode, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast) {
        
         $NEAREST_PATH = array();
         $LEFT_NODES = array();
         
         foreach (array_keys($routes) as $val)
-        $LEFT_NODES[array_search($val, $cityNames)] = 99999;
+            $LEFT_NODES[array_search($val, $cityNames)] = 99999;
         $LEFT_NODES[$startNode] = 0;
         
         // Starts calculating.
@@ -166,33 +163,34 @@
             $lowestWeightIndex = array_search(min($LEFT_NODES), $LEFT_NODES);
             
             if ($lowestWeightIndex == $endNode)
-            break;
+                break;
             
             // key = nome città destinazione
             // val = array contenente i veicoli
-            foreach ($routes[$cityNames[$lowestWeightIndex]] as $key => $val)
+            foreach ($routes[$cityNames[$lowestWeightIndex]] as $key => $val) {
             
-            $vehicle = "";
-            
-            if ($isPlane && isset($val["airplane"]))
-                $vehicle = "airplane";
-            else if ($isTrain && isset($val["train"]))
-                $vehicle = "train";
-            else if ($isBus && isset($val["bus"]))
-                $vehicle = "bus";
-            
-            if ($isCheap) {
-                $finalVal = $val[$vehicle]["costo"];
-            }
-            else if ($isFast) {
-                $finalVal = $val[$vehicle]["durata"];
-            }
-            
-            $finalKey = array_search($key, $cityNames);
-            
-            if (!empty($LEFT_NODES[$finalKey]) && $LEFT_NODES[$lowestWeightIndex] + $finalVal < $LEFT_NODES[$finalKey]) {
-                $LEFT_NODES[$finalKey] = $LEFT_NODES[$lowestWeightIndex] + $finalVal;
-                $NEAREST_PATH[$finalKey] = array($lowestWeightIndex, $LEFT_NODES[$finalKey]);
+                $vehicle = "";
+                
+                if ($isPlane && isset($val["airplane"]))
+                    $vehicle = "airplane";
+                else if ($isTrain && isset($val["train"]))
+                    $vehicle = "train";
+                else if ($isBus && isset($val["bus"]))
+                    $vehicle = "bus";
+                else
+                    continue;
+                
+                if ($isCheap)
+                    $finalVal = $val[$vehicle]["costo"];
+                else if ($isFast)
+                    $finalVal = $val[$vehicle]["durata"];
+                
+                $finalKey = array_search($key, $cityNames);
+                
+                if (!empty($LEFT_NODES[$finalKey]) && $LEFT_NODES[$lowestWeightIndex] + $finalVal < $LEFT_NODES[$finalKey]) {
+                    $LEFT_NODES[$finalKey] = $LEFT_NODES[$lowestWeightIndex] + $finalVal;
+                    $NEAREST_PATH[$finalKey] = array($lowestWeightIndex, $LEFT_NODES[$finalKey]);
+                }
             }
             unset($LEFT_NODES[$lowestWeightIndex]);
         }
@@ -213,20 +211,30 @@
     // echo "<br />From $startNode to $endNode";
     // echo "<br />The length is ".$NEAREST_PATH[$endNode][1];
     // echo "<br />Path is ".implode('->', $path);
-
     
     $jsonResult = array();    
     $vehicle = "";
+
+    $from = array_search($_GET["from"], $cityNames);
+    $to = array_search($_GET["to"], $cityNames);
     
-    $isBus = true;
-    $isPlane = true;
-    $isTrain = true;
+    $isBus = isset($_GET["bus"]);
+    $isPlane = isset($_GET["airplane"]);
+    $isTrain = isset($_GET["train"]);
     
-    $isCheap = true;
     $isFast = false;
+    $isCheap = false;
 
-    $result = getShortestPath(1, 5, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
+    if ($_GET["type"] == "fastest")
+        $isFast = true;
+    if ($_GET["type"] == "cheapest")
+        $isCheap = true;
+    if ($_GET["type"] == "most_scenic")
+        $isCheap = true;
 
+    $result = getShortestPath($from, $to, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
+
+    // TODO Fix this part as it now gives the wrong vehicle/time/price.
     for ($i = 0; $i < count($result) - 1; $i++) {
         if ($isPlane && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["airplane"]))
             $vehicle = "airplane";

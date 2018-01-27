@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
-import "./hero.style.css";
 import Slider from "react-slick";
+import {imgPath, serverPath} from "../paths";
+
+import "./hero.style.css";
 
 const settings = {
     dots: false,
@@ -28,14 +30,14 @@ class Hero extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/east-coast-trip/get-destinations.php")
+        axios.get(serverPath + "get-destinations.php")
             .then((response) => {
                 console.log(response);
                 this.setState({
                     cities: response.data.map((value) => {
                         return (
                             <div className="slide-container" key={value.id}>
-                                <img src={"http://localhost:8080/east-coast-trip/images/" + value.urlBig} alt="" />
+                                <img src={imgPath + value.urlBig} alt="" />
                                 <h1 className="desc">
                                     {value.name}
                                 </h1>
