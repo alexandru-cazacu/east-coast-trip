@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./trip.style.css";
 import { serverPath } from "../paths";
@@ -12,7 +12,8 @@ class Trip extends React.Component {
             trip: [],
             firstPoint: [],
             totalTime: 0,
-            totalCost: 0
+            totalCost: 0,
+            error: false
         };
     }
 
@@ -25,18 +26,11 @@ class Trip extends React.Component {
                     this.setState({
                         firstPoint: [
                             <div className="point">
-                                <Link to="destinations/1">
+                                <Link to={"destinations/" + response.data[0].fromID}>
                                     <p className="title">{response.data[0].from}</p>
                                 </Link>
                             </div>],
                         trip: response.data.map((value) => {
-                            var vehicle;
-                            if (value.vehicle === "train")
-                                vehicle = () => (<p>Train</p>);
-                            if (value.vehicle === "airplane")
-                                vehicle = () => (<p>airplane</p>);
-                            if (value.vehicle === "bus")
-                                vehicle = () => (<p>Bus</p>);
 
                             this.setState({ totalCost: this.state.totalCost + value.price });
                             this.setState({ totalTime: this.state.totalTime + value.time });
@@ -45,13 +39,16 @@ class Trip extends React.Component {
                                 <div>
                                     <div className="line">
                                         <div className="info">
-                                            {vehicle}
+                                            {value.vehicle === "train" && <div><span className="fa fa-subway"></span> Train </div>}
+                                            {value.vehicle === "bus" && <div><span className="fa fa-bus"></span> Bus </div>}
+                                            {value.vehicle === "airplane" && <div><span className="fa fa-plane"></span> Plane </div>}
+                                            <br />
                                             <span className="fa fa-usd"></span> ${value.price} <br />
                                             <span className="fa fa-clock-o"></span> {value.time}h <br />
                                         </div>
                                     </div>
                                     <div className="point">
-                                        <Link to="destinations/1">
+                                        <Link to={"destinations/" + value.toID}>
                                             <p className="title">{value.to}</p>
                                         </Link>
                                     </div>
@@ -62,11 +59,26 @@ class Trip extends React.Component {
                 })
                 .catch((error) => {
                     console.log(error);
+                    this.setState({ error: true });
                 });
         }
     }
 
     render() {
+        if (this.props.link === "") {
+            return <Redirect to="/" />;
+        }
+        if (this.state.error)
+            return (
+                <div>
+                    <div className="vertical-space">
+                    </div>
+                    <div className="wrapper">
+                        <h1 className="space-bottom">We are sorry for the inconvenience...</h1>
+                        <p>We are sorry for the inconvenience, but it seems that there aren't any available routes that comply to your requests. Please try again with different settings.</p>
+                    </div>
+                </div>
+            );
         return (
             <div>
                 <div className="vertical-space"></div>

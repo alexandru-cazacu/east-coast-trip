@@ -9,7 +9,6 @@ function DestinationCard() {
                 <Link to="/" className="logo"><h2>East Coast Trip</h2></Link>
                 <div className="list">
                     <Link to="/" className="item">Home</Link>
-                    <Link to="/trip" className="item">Trip</Link>
                     <Link to="/destinations" className="item">Destinations</Link>
                     <Link to="/about" className="item">About</Link>
                 </div>

@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-- [Screenshots](#screenshots)
+- [Screenshots](#screenshot)
 - [Info](#info)
 - [Installation](#installation)
 

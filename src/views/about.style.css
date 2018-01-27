@@ -1,13 +1,24 @@
 .about .bg {
     width: 100%;
     height: 50vh;
-    background: url("../images/abstract-bg1.png");
+    background: url("../images/abstract-bg2.jpg");
     background-size: cover;
+    position: relative;
+}
+
+.about .center-vertical {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
 }
 
 .about .half {
     width: 100%;
     height: 50vh;
+    position: relative;
 }
 
 .about .title {
@@ -44,7 +55,7 @@
 .profile .name {
     text-align: center;
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 
 .profile .role {
@@ -68,7 +79,8 @@
 
 .half .second-half-title {
     color: rgba(0, 0, 0, 0.6);
-    font-size: 0.9em;
+    font-size: 1.2em;
+    padding: 0 0 1em 0;
     text-transform: uppercase;
     font-weight: bold;
 }

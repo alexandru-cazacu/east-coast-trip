@@ -36,8 +36,6 @@ class Form extends React.Component {
         this.setState({ userHasClicked: true });
         console.log("Submit!");
 
-        // TODO Implement axios
-
         if (this.validateInput()) {
             let bus = this.state.bus ? "&bus=bus" : "";
             let train = this.state.train ? "&train=train" : "";

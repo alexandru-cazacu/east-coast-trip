@@ -245,6 +245,8 @@
 
         $jsonResult[$i]["from"] = $cityNames[$result[$i]];
         $jsonResult[$i]["to"] = $cityNames[$result[$i+1]];
+        $jsonResult[$i]["fromID"] = $result[$i];
+        $jsonResult[$i]["toID"] = $result[$i+1];
         $jsonResult[$i]["vehicle"] = $vehicle;
         $jsonResult[$i]["price"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["costo"];
         $jsonResult[$i]["time"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["durata"];
