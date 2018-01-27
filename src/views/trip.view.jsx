@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./trip.style.css";
-import { imgPath, serverPath } from "../paths";
+import { serverPath } from "../paths";
 
 class Trip extends React.Component {
     constructor(props) {
@@ -31,11 +31,11 @@ class Trip extends React.Component {
                             </div>],
                         trip: response.data.map((value) => {
                             var vehicle;
-                            if (value.vehicle == "train")
+                            if (value.vehicle === "train")
                                 vehicle = () => (<p>Train</p>);
-                            if (value.vehicle == "airplane")
+                            if (value.vehicle === "airplane")
                                 vehicle = () => (<p>airplane</p>);
-                            if (value.vehicle == "bus")
+                            if (value.vehicle === "bus")
                                 vehicle = () => (<p>Bus</p>);
 
                             this.setState({ totalCost: this.state.totalCost + value.price });
