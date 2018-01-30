@@ -26,7 +26,7 @@ class Trip extends React.Component {
                     this.setState({
                         firstPoint: [
                             <div className="point">
-                                <Link to={"destinations/" + response.data[0].fromID}>
+                                <Link to={"/destinations/" + response.data[0].fromID}>
                                     <p className="title">{response.data[0].from}</p>
                                 </Link>
                             </div>],
@@ -48,7 +48,7 @@ class Trip extends React.Component {
                                         </div>
                                     </div>
                                     <div className="point">
-                                        <Link to={"destinations/" + value.toID}>
+                                        <Link to={"/destinations/" + value.toID}>
                                             <p className="title">{value.to}</p>
                                         </Link>
                                     </div>

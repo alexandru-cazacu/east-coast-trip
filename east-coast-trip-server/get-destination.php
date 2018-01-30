@@ -57,7 +57,7 @@
 
     mysqli_close($connection);
 
-    header('Access-Control-Allow-Origin: *', false);
+    header('Access-Control-Allow-Origin: http://localhost:3000', false);
     header('Content-type: application/json', false);
     echo json_encode($resultAsJson, JSON_UNESCAPED_UNICODE);
     // header("Content-Type: text/html; charset=utf-8");
