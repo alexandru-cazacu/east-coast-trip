@@ -4,11 +4,11 @@
 
 .timeline {
     text-align: center;
-    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
     height: 200px;
     margin: 2em 0;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    border-radius: 3px;
+    border-radius: 5px;
+    position: relative;
 }
 
 .timeline div {
@@ -79,4 +79,32 @@
 .timeline .fa {
     font-size: 1.1em;
     color: #aaa;
+}
+
+.book-button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* float: right; */
+    width: 10em;
+    border-radius: 5px;
+}
+
+.book-button {
+    padding: 0.5em 2em;
+    margin: 1em;
+    border: 2px solid red;
+    border-radius: 100px;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    width: 4em;
+}
+
+.book-button:last-child {
+    margin-top: 0;
+}
+
+.book-button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.15);
 }

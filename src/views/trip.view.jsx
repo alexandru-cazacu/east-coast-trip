@@ -85,6 +85,10 @@ class Trip extends React.Component {
                 <div className="wrapper">
                     <h1 className="space bottom"><center>Your Itinerary</center></h1>
                     <div className="timeline">
+                        <div className="book-button-container">
+                            <div className="book-button"><span className="fa fa-shopping-cart"></span> Book</div>
+                            <div className="book-button"><span className="fa fa-info"></span> Info</div>
+                        </div>
                         <div className="first line"></div>
                         {this.state.firstPoint}
                         {this.state.trip}
@@ -95,7 +99,7 @@ class Trip extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <h1 className="space top bottom"><center>You might also like...</center></h1>
+                    {/* <h1 className="space top bottom"><center>You might also like...</center></h1> */}
                 </div>
             </div >
         );
