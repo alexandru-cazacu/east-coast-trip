@@ -139,18 +139,43 @@
             ]
     ];
 
-    $cityNames = [
-        0 => "New York",
-        1 => "Philadelphia",
-        2 => "Chicago",
-        3 => "Washington",
-        4 => "New Orleans",
-        5 => "Los Angeles",
-        6 => "Seattle"
-    ];
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $db = "east-coast-trip";
+    $table = "places";
+
+    $connection = mysqli_connect($host, $user, $pass, $db);
+    if (!$connection)
+        die("Connection failed: " . mysqli_connect_error());
+
+    $sql = "SELECT * FROM " . $table;
+
+    $result = mysqli_query($connection, $sql);
+
+    $resultAsJson = array();
+
+$cityNames = array();
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $cityNames[$row["ID"]] = $row["city_name"];
+        }
+    }
+
+    mysqli_close($connection);
+
+    // $cityNames = [
+    //     0 => "New York",
+    //     1 => "Philadelphia",
+    //     2 => "Chicago",
+    //     3 => "Washington",
+    //     4 => "New Orleans",
+    //     5 => "Los Angeles",
+    //     6 => "Seattle"
+    // ];
 
     function getShortestPath ($startNode, $endNode, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast) {
-       
         $NEAREST_PATH = array();
         $LEFT_NODES = array();
         
@@ -164,7 +189,7 @@
             
             if ($lowestWeightIndex == $endNode)
                 break;
-            
+
             // key = nome città destinazione
             // val = array contenente i veicoli
             foreach ($routes[$cityNames[$lowestWeightIndex]] as $key => $val) {
@@ -180,10 +205,12 @@
                 else
                     continue;
                 
-                if ($isCheap)
+                if ($isCheap) {
                     $finalVal = $val[$vehicle]["costo"];
-                else if ($isFast)
+                }
+                else if ($isFast) {
                     $finalVal = $val[$vehicle]["durata"];
+                }
                 
                 $finalKey = array_search($key, $cityNames);
                 
@@ -204,17 +231,11 @@
         }
         $path[] = $startNode;
         $path = array_reverse($path);
-        return $path;   
+        return $path;
     }
-
-    // Prints result.
-    // echo "<br />From $startNode to $endNode";
-    // echo "<br />The length is ".$NEAREST_PATH[$endNode][1];
-    // echo "<br />Path is ".implode('->', $path);
     
-    $jsonResult = array();    
     $vehicle = "";
-
+    
     $from = array_search($_GET["from"], $cityNames);
     $to = array_search($_GET["to"], $cityNames);
     
@@ -224,35 +245,43 @@
     
     $isFast = false;
     $isCheap = false;
-
+    
     if ($_GET["type"] == "fastest")
-        $isFast = true;
+    $isFast = true;
     if ($_GET["type"] == "cheapest")
-        $isCheap = true;
+    $isCheap = true;
     if ($_GET["type"] == "most_scenic")
-        $isCheap = true;
-
-    $result = getShortestPath($from, $to, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
-
-    // TODO Fix this part as it now gives the wrong vehicle/time/price.
-    for ($i = 0; $i < count($result) - 1; $i++) {
-        if ($isPlane && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["airplane"]))
+    $isCheap = true;
+    
+    
+    function getAsJson ($result, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast) {
+        $jsonResult = array();    
+        // TODO Fix this part as it now gives the wrong vehicle/time/price.
+        for ($i = 0; $i < count($result) - 1; $i++) {
+            if ($isPlane && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["airplane"]))
             $vehicle = "airplane";
-        else if ($isTrain && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["train"]))
+            else if ($isTrain && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["train"]))
             $vehicle = "train";
-        else if ($isBus && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["bus"]))
+            else if ($isBus && isset($routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] ["bus"]))
             $vehicle = "bus";
-
-        $jsonResult[$i]["from"] = $cityNames[$result[$i]];
-        $jsonResult[$i]["to"] = $cityNames[$result[$i+1]];
-        $jsonResult[$i]["fromID"] = $result[$i];
-        $jsonResult[$i]["toID"] = $result[$i+1];
-        $jsonResult[$i]["vehicle"] = $vehicle;
-        $jsonResult[$i]["price"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["costo"];
-        $jsonResult[$i]["time"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["durata"];
+            
+            $jsonResult[$i]["from"] = $cityNames[$result[$i]];
+            $jsonResult[$i]["to"] = $cityNames[$result[$i+1]];
+            $jsonResult[$i]["fromID"] = $result[$i];
+            $jsonResult[$i]["toID"] = $result[$i+1];
+            $jsonResult[$i]["vehicle"] = $vehicle;
+            $jsonResult[$i]["price"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["costo"];
+            $jsonResult[$i]["time"] = $routes [$cityNames[$result[$i]]] [$cityNames[$result[$i+1]]] [$vehicle] ["durata"];
+        }
+        return $jsonResult;
     }
 
+    $result = getShortestPath($from, $to, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
+    $result = getAsJson($result, $routes, $cityNames, $isBus, $isPlane, $isTrain, $isCheap, $isFast);
+        
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true ");
+    header("Access-Control-Allow-Methods: OPTIONS, GET, POST");
     header('Content-type: application/json');
-    echo json_encode($jsonResult);
+    echo json_encode($result);
 ?>

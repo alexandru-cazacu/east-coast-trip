@@ -30,7 +30,9 @@
 
     mysqli_close($connection);
 
-    header('Access-Control-Allow-Origin: *', false);
-    header('Content-type: application/json', false);
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true ");
+    header("Access-Control-Allow-Methods: OPTIONS, GET, POST");
+    header('Content-type: application/json');
     echo json_encode($resultAsJson);
 ?>

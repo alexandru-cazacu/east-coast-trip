@@ -1,7 +1,7 @@
 .about .bg {
     width: 100%;
     height: 50vh;
-    background: url("../images/abstract-bg2.jpg");
+    background: url("../res/abstract-bg2.jpg");
     background-size: cover;
     position: relative;
 }
@@ -31,9 +31,9 @@
     text-align: center;
     width: 500px;
     margin: 0 auto;
-    line-height: 1.5em;
+    line-height: 1.8em;
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .profile {
@@ -69,6 +69,7 @@
 .half {
     text-align: center;
     width: 200px;
+    border: 1px solid red;
 }
 
 .half .fa {

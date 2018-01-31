@@ -33,7 +33,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    {this.state.link !== "" && <Redirect to="/trip" push={true} />}
+                    {this.state.link !== "" && <Redirect to={"/trip/" + this.state.link} push={true} />}
                     <Navbar />
                     <Switch>
                         <Route exact path="/" render={() => <Home onUserClick={this.onUserClick.bind(this)} />} />
