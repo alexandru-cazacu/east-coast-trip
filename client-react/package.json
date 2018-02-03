@@ -2,9 +2,9 @@
   "name": "east-coast-trip",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://east-coast-trip-alexandrucazacu.c9users.io/east-coast-trip-server/client-react/build",
   "dependencies": {
     "axios": "^0.17.1",
-    "flux": "^3.1.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
