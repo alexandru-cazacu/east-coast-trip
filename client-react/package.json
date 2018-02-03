@@ -2,7 +2,7 @@
   "name": "east-coast-trip",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://east-coast-trip-alexandrucazacu.c9users.io/east-coast-trip-server/client-react/build",
+  "homepage": "https://east-coast-trip-alexandrucazacu.c9users.io/client-react/build",
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.2.0",
