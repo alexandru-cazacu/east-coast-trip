@@ -33,14 +33,14 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    {this.state.link !== "" && <Redirect to={"/trip/" + this.state.link} push={true} />}
+                    {this.state.link !== "" && <Redirect to={"/client-react/build/trip/" + this.state.link} push={true} />}
                     <Navbar />
                     <Switch>
-                        <Route exact path="/" render={() => <Home onUserClick={this.onUserClick.bind(this)} />} />
-                        <Route exact path="/trip" render={() => <Trip link={this.state.link} />} />
-                        <Route exact path="/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />
-                        <Route exact path="/destinations/:id(\d+)" component={Destination} />
-                        <Route exact path="/about" component={About} />
+                        <Route exact path="/client-react/build/" render={() => <Home onUserClick={this.onUserClick.bind(this)} />} />
+                        <Route exact path="/client-react/build/trip" render={() => <Trip link={this.state.link} />} />
+                        <Route exact path="/client-react/build/destinations" render={(props) => (<Destinations {...props} name="ciao" />)} />
+                        <Route exact path="/client-react/build/destinations/:id(\d+)" component={Destination} />
+                        <Route exact path="/client-react/build/about" component={About} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Slider from "react-slick";
-import {imgPath, serverPath} from "../paths";
+import { imgPath, serverPath } from "../paths";
 
 import "./hero.style.css";
 

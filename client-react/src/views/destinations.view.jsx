@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {imgPath, serverPath} from "../paths";
+import { imgPath, serverPath } from "../paths";
 
 import "./destinations.style.css";
 
@@ -23,7 +23,7 @@ class Destinations extends React.Component {
                         return (
                             <div className={value.id === "1" || value.id === "10" ? "card large" : "card small"} key={value.id}>
                                 <img src={imgPath + value.urlSmall} alt="" />
-                                <Link to={"destinations/" + value.id} className="desc">{value.name}</Link>
+                                <Link to={"/client-react/build/destinations/" + value.id} className="desc">{value.name}</Link>
                             </div>
                         );
                     })
